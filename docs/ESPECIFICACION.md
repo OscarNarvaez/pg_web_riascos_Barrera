@@ -255,6 +255,12 @@ Etiquetas iniciales (semilla, modificables por la firma): Criterio, Normativa, P
 
 Los contactos **solo** se insertan desde la Edge Function con la clave secreta. Un editor nunca ve datos personales de contactos.
 
+**Decisiones de implementación (Fase 3):**
+- El detalle de una publicación muestra su autor (5.5), pero el público no lee `profiles`. La función `autores_publicos()` expone únicamente nombre y cargo de quienes firman contenido publicado; es la única excepción, y es deliberada.
+- Las funciones auxiliares `es_editor()`, `es_admin()` y el disparador que crea el perfil viven en el esquema `privado`, que la API no expone.
+- Los slugs `casos`, `pagina` y `etiqueta` están reservados por las rutas del listado (4.1): la base de datos los rechaza como slug actual o anterior.
+- Las pruebas de base de datos se ejecutan con `pnpm test:bd` contra el proyecto vinculado, dentro de una transacción que se revierte; no requieren Docker.
+
 ### 6.4 Búsqueda
 - Extensión `unaccent`, envuelta en una función `IMMUTABLE` para poder usarla en columnas generadas e índices.
 - `search_vector` generado con `to_tsvector('spanish', ...)` sobre título (peso A), extracto y etiquetas (peso B) y texto del cuerpo (peso C), con índice GIN.

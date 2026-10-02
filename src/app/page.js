@@ -8,12 +8,12 @@ import Metodo from '@/components/inicio/Metodo';
 import PensamosAntes from '@/components/inicio/PensamosAntes';
 import Perspectivas from '@/components/inicio/Perspectivas';
 import Promesa from '@/components/inicio/Promesa';
+import PublicacionesRecientes from '@/components/inicio/PublicacionesRecientes';
 import QueHacemos from '@/components/inicio/QueHacemos';
 
 /**
  * Inicio (§5.1): cada sección transmite una sola idea. A.2.5 no se publica por decisión del
- * cliente. La sección 11, "Publicaciones recientes", se añade en la Fase 3 y no aparece si no
- * hay publicaciones.
+ * cliente. "Publicaciones recientes" no aparece si no hay publicaciones.
  */
 export default function Inicio() {
   return (
@@ -28,6 +28,7 @@ export default function Inicio() {
       <Promesa />
       <EquipoVista />
       <Cobertura />
+      <PublicacionesRecientes />
       <Cierre />
     </>
   );

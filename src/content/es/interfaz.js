@@ -16,13 +16,6 @@ export const interfaz = {
     abrirMenu: 'Abrir menú',
     cerrarMenu: 'Cerrar menú',
   },
-  buscador: {
-    titulo: 'Buscar en el sitio',
-    campo: 'Qué desea buscar',
-    ejemplo: 'Por ejemplo: contratación estatal',
-    enviar: 'Buscar',
-    cerrar: 'Cerrar el buscador',
-  },
   pie: {
     navegacion: 'Navegación',
     contacto: 'Contacto',
