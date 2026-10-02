@@ -1,4 +1,6 @@
 # Compilación estática y despliegue en GitHub Pages (especificación §16.1).
+# Origen de Pages: "GitHub Actions" (Settings → Pages → Source). Con ese origen no
+# interviene Jekyll, así que no hace falta .nojekyll.
 #
 # Variables del repositorio (Settings → Secrets and variables → Actions → Variables):
 #   NEXT_PUBLIC_SITE_URL   URL pública sin barra final. La ruta base se deriva de ella.
@@ -22,6 +24,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  # deploy-pages v4+ lo exige para localizar el artefacto.
+  actions: read
 
 jobs:
   compilar:
@@ -42,7 +46,7 @@ jobs:
       TIENE_FUENTES: ${{ secrets.FONTS_REPO_TOKEN != '' }}
     steps:
       - name: Obtener el código
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Configurar URL y ruta base
         env:
@@ -57,7 +61,7 @@ jobs:
 
       - name: Obtener las fuentes Breve del repositorio privado
         if: env.TIENE_FUENTES == 'true'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.repository_owner }}/rb-fuentes-privadas
           token: ${{ secrets.FONTS_REPO_TOKEN }}
@@ -72,10 +76,10 @@ jobs:
           ls src/fonts/breve
 
       - name: Instalar pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: Instalar Node LTS
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -87,11 +91,8 @@ jobs:
       - name: Compilar
         run: pnpm build
 
-      - name: Preparar el artefacto
-        run: touch out/.nojekyll
-
       - name: Subir el artefacto de Pages
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: out
 
@@ -108,4 +109,4 @@ jobs:
     steps:
       - name: Desplegar
         id: despliegue
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
