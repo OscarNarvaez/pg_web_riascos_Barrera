@@ -34,13 +34,14 @@ De ahí salen tres decisiones que gobiernan todo lo demás:
 
 **Derivados permitidos** (todos son tintes o transparencias de los cinco):
 
-| Uso                           | Valor                                                             |
-| ----------------------------- | ----------------------------------------------------------------- |
-| Barra de vidrio               | marfil al 72 % + desenfoque de 20 px, borde inferior verde al 8 % |
-| Vidrio sobre secciones verdes | verde al 64 % + desenfoque de 20 px, borde marfil al 10 %         |
-| Mosaico                       | oliva al 15 % sobre marfil                                        |
-| Texto secundario sobre verde  | marfil al 75 % (verificado: 7,26:1, AAA)                          |
-| Filete sobre verde            | oro al 100 % (3,22:1, válido para elementos no textuales)         |
+| Uso                                       | Valor                                                                                                                                         |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Barra de vidrio                           | marfil al 72 % + desenfoque de 20 px, borde inferior verde al 8 %                                                                             |
+| Menú móvil y buscador (pantalla completa) | marfil al 92 % + desenfoque de 24 px. Al 72 % la página de fondo se leía como manchas detrás del texto grande                                 |
+| Vidrio sobre secciones verdes             | verde al 80 % + desenfoque de 20 px, borde marfil al 10 %. Al 64 % el texto marfil caía a ≈ 4,0:1 con marfil detrás; al 80 % queda en ≈ 6,3:1 |
+| Mosaico                                   | oliva al 15 % sobre marfil                                                                                                                    |
+| Texto secundario sobre verde              | marfil al 75 % (verificado: 7,26:1, AAA)                                                                                                      |
+| Filete sobre verde                        | oro al 100 % (3,22:1, válido para elementos no textuales)                                                                                     |
 
 Con `prefers-reduced-transparency` o sin `backdrop-filter`, el vidrio pasa a marfil o verde
 sólido al 100 %.

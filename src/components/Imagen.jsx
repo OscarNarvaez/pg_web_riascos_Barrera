@@ -47,7 +47,7 @@ export default function Imagen({
         style={{ aspectRatio: `${pa} / ${pb}` }}
       >
         {ES_DESARROLLO && (
-          <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 p-4 text-center text-pequeno text-verde-gris">
+          <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 p-4 text-center text-pequeno text-verde">
             <span className="font-medium text-verde">{nombre}</span>
             <span>
               {pa}:{pb} · mínimo {espacio.minimo.join(' × ')} px

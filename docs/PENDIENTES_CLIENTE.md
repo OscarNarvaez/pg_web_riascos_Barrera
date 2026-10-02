@@ -15,11 +15,12 @@
 
 ## 2. Identidad visual
 
-| Pendiente                                       | Detalle                                                                                                                                                                                                       |
-| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Logotipos en SVG**                            | En `logos/` solo hay WebP de 580 × 221 px (horizontal) y 322 × 393 px (escudo). Hace falta vector para la nitidez en pantallas de alta densidad, el `favicon.svg` y el ícono de 512 px.                       |
-| **Variante del logotipo en marfil o monocroma** | El nombre "RIASCOS & BARRERA" está en verde y desaparece sobre el fondo verde profundo de la marca. Se necesita para el pie de página, las secciones verdes y la imagen que se muestra al compartir el sitio. |
-| Rol del escudo suelto                           | Confirmar si `logoR_B.webp` (solo el escudo) es el "logotipo principal" para contextos de marca, o si existe un logotipo vertical con nombre.                                                                 |
+| Pendiente                                       | Detalle                                                                                                                                                                                                                                   |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Logotipos en SVG**                            | En `logos/` solo hay WebP de 580 × 221 px (horizontal) y 322 × 393 px (escudo). Hace falta vector para la nitidez en pantallas de alta densidad, el `favicon.svg` y el ícono de 512 px.                                                   |
+| **Variante del logotipo en marfil o monocroma** | El nombre "RIASCOS & BARRERA" está en verde y desaparece sobre el fondo verde profundo de la marca. Se necesita para el pie de página, las secciones verdes y la imagen que se muestra al compartir el sitio.                             |
+| Logotipo horizontal sin descriptor              | En la barra de navegación, el descriptor "ABOGADOS · CONSULTORES" queda en unos 2 px de alto y es ilegible. Una versión del logotipo horizontal sin descriptor, para tamaños pequeños, resolvería el tamaño mínimo legible que pide §9.7. |
+| Rol del escudo suelto                           | Confirmar si `logoR_B.webp` (solo el escudo) es el "logotipo principal" para contextos de marca, o si existe un logotipo vertical con nombre.                                                                                             |
 
 ## 3. Contenido
 

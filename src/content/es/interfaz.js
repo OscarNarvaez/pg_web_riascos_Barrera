@@ -16,6 +16,25 @@ export const interfaz = {
     abrirMenu: 'Abrir menú',
     cerrarMenu: 'Cerrar menú',
   },
+  buscador: {
+    titulo: 'Buscar en el sitio',
+    campo: 'Qué desea buscar',
+    ejemplo: 'Por ejemplo: contratación estatal',
+    enviar: 'Buscar',
+    cerrar: 'Cerrar el buscador',
+  },
+  pie: {
+    navegacion: 'Navegación',
+    contacto: 'Contacto',
+    legal: 'Legal',
+    privacidad: 'Política de privacidad',
+    tratamientoDatos: 'Política de tratamiento de datos',
+    lecturas: 'Lecturas recomendadas',
+    derechos: 'Todos los derechos reservados.',
+  },
+  formularios: {
+    obligatorio: 'obligatorio',
+  },
   acciones: {
     agendeConsulta: 'Agende su consulta',
     conozcaAreas: 'Conozca nuestras áreas',

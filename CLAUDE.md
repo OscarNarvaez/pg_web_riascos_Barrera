@@ -32,7 +32,12 @@ Next.js App Router con `output: 'export'` · JavaScript con JSDoc, **no TypeScri
 Tailwind CSS · Motion con `LazyMotion` · Supabase (Postgres, Auth, Storage, Edge Functions) ·
 TipTap + DOMPurify · Vitest, Testing Library, Playwright · ESLint y Prettier.
 
-**Gestor de paquetes: pnpm.** Nunca npm, yarn ni bun.
+**Gestor de paquetes: pnpm.** Nunca npm, yarn ni bun. Versiones exactas en `package.json`.
+No añadas excepciones a `minimumReleaseAge` en `pnpm-workspace.yaml`: si una versión es demasiado
+reciente, usa la última que pnpm acepte.
+
+Next.js 16 cambia APIs y convenciones respecto de versiones anteriores: antes de usar una API,
+consulta su guía en `node_modules/next/dist/docs/`.
 
 Entorno: Node LTS vía nvm, pnpm vía corepack. Los shells no interactivos no cargan nvm:
 antepón `source ~/.nvm/nvm.sh &&` a los comandos de Node y pnpm.

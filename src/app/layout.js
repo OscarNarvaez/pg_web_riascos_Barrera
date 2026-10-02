@@ -1,6 +1,10 @@
 import './globals.css';
+import ProveedorMovimiento from '@/components/movimiento/ProveedorMovimiento';
+import Encabezado from '@/components/navegacion/Encabezado';
+import PiePagina from '@/components/navegacion/PiePagina';
 import { variablesDeFuentes } from '@/fonts';
 import { firma } from '@/config/firma';
+import { paleta } from '@/config/paleta';
 import { interfaz } from '@/content/es/interfaz';
 import { INDEXABLE, SITE_URL } from '@/lib/sitio';
 
@@ -20,23 +24,39 @@ export const metadata = {
 
 /** @type {import('next').Viewport} */
 export const viewport = {
-  themeColor: '#f9f8f2',
+  themeColor: paleta.marfil,
   colorScheme: 'light',
   // Necesario para que env(safe-area-inset-*) tenga valor en dispositivos con muesca (§9.5).
   viewportFit: 'cover',
 };
 
+// Sin JavaScript, las animaciones de entrada no se ejecutan: su estado inicial no debe ocultar nada.
+const SIN_SCRIPT =
+  '[data-revelar]{opacity:1!important;transform:none!important;filter:none!important}' +
+  '[data-progreso]{transform:none!important}';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="es-CO" className={variablesDeFuentes}>
-      <body className="min-h-dvh">
+      <head>
+        <noscript>
+          <style>{SIN_SCRIPT}</style>
+        </noscript>
+      </head>
+      <body className="flex min-h-dvh flex-col">
         <a
           href="#contenido"
           className="sr-only rounded-pildora bg-verde px-5 py-3 text-marfil focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
         >
           {interfaz.saltarAlContenido}
         </a>
-        <main id="contenido">{children}</main>
+        <ProveedorMovimiento>
+          <Encabezado />
+          <main id="contenido" className="flex-1">
+            {children}
+          </main>
+          <PiePagina />
+        </ProveedorMovimiento>
       </body>
     </html>
   );

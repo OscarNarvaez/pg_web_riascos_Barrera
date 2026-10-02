@@ -77,6 +77,8 @@
 @layer base {
   html {
     color-scheme: light;
+    /* Las anclas no quedan tapadas por la barra fija. */
+    scroll-padding-top: calc(5rem + env(safe-area-inset-top));
     -webkit-text-size-adjust: 100%;
   }
 
@@ -91,6 +93,16 @@
     text-rendering: optimizeLegibility;
   }
 
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
   ::selection {
     background-color: color-mix(in srgb, var(--color-oro) 30%, transparent);
     color: var(--color-verde);
@@ -103,8 +115,24 @@
     border-radius: 0.25rem;
   }
 
-  /* Accesibilidad del movimiento (§9.6). */
+  /* Accesibilidad del movimiento (§9.6): con movimiento reducido todo es visible de inmediato.
+     Las animaciones de Motion se renderizan en el servidor con su estado inicial (oculto);
+     estas reglas lo anulan desde el primer pintado, sin esperar a que cargue JavaScript. */
   @media (prefers-reduced-motion: reduce) {
+    [data-revelar] {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+    }
+
+    [data-resaltado] {
+      opacity: 1 !important;
+    }
+
+    [data-progreso] {
+      transform: none !important;
+    }
+
     *,
     *::before,
     *::after {
@@ -144,4 +172,101 @@
   font-style: normal;
   letter-spacing: 0;
   padding-inline: 0.25em;
+}
+
+/*
+ * Materiales translúcidos (§9.1 y plan de diseño §1). Solo para controles flotantes, nunca
+ * para bloques de lectura. Contraste verificado contra el peor fondo en src/lib/contraste.test.js.
+ * Sin soporte de backdrop-filter, o con prefers-reduced-transparency, pasan a sólidos.
+ */
+@utility vidrio {
+  background-color: color-mix(in srgb, var(--color-marfil) 72%, transparent);
+  border-color: color-mix(in srgb, var(--color-verde) 8%, transparent);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    background-color: var(--color-marfil);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    background-color: var(--color-marfil);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Capas a pantalla completa con texto grande (menú móvil, buscador): el fondo apenas se
+   insinúa. Al 72 %, los bloques de la página se leían como manchas detrás de los enlaces. */
+@utility vidrio-denso {
+  background-color: color-mix(in srgb, var(--color-marfil) 92%, transparent);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    background-color: var(--color-marfil);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    background-color: var(--color-marfil);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@utility vidrio-oscuro {
+  background-color: color-mix(in srgb, var(--color-verde) 80%, transparent);
+  border-color: color-mix(in srgb, var(--color-marfil) 10%, transparent);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    background-color: var(--color-verde);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    background-color: var(--color-verde);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Microinteracciones (§9.6, momento 6). */
+
+/* Presión: se reduce levemente al presionar. */
+@utility presionable {
+  transition: transform var(--duracion-micro) var(--ease-estandar);
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Subrayado que crece desde la izquierda, con transform (§9.6 solo permite transform, opacity y
+   filter). Con el cursor solo en dispositivos que lo tienen; con teclado, al recibir el foco. */
+@utility subrayado-animado {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.125em;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duracion-interfaz) var(--ease-salida);
+  }
+
+  @media (hover: hover) {
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &:focus-visible::after,
+  &[aria-current='page']::after {
+    transform: scaleX(1);
+  }
 }
