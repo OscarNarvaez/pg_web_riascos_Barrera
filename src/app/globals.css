@@ -103,6 +103,11 @@
     text-wrap: pretty;
   }
 
+  /* Con un modal nativo abierto, el fondo no se desplaza (§12). */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
   ::selection {
     background-color: color-mix(in srgb, var(--color-oro) 30%, transparent);
     color: var(--color-verde);
@@ -160,6 +165,65 @@
 
 @utility espacio-seccion {
   padding-block: var(--espacio-seccion);
+}
+
+/* Texto largo en Markdown: políticas legales y, desde la Fase 3, publicaciones (§5.5). */
+@utility prosa {
+  max-width: 68ch;
+  color: var(--color-verde);
+
+  & > * + * {
+    margin-top: 1.25em;
+  }
+
+  & h2 {
+    margin-top: 2.5em;
+    font-family: var(--font-titulo);
+    font-size: var(--text-subtitulo);
+    line-height: var(--text-subtitulo--line-height);
+    letter-spacing: var(--text-subtitulo--letter-spacing);
+  }
+
+  & h3 {
+    margin-top: 2em;
+    font-weight: 600;
+  }
+
+  & ul,
+  & ol {
+    padding-left: 1.25em;
+  }
+
+  & ul {
+    list-style: disc;
+  }
+
+  & ol {
+    list-style: decimal;
+  }
+
+  & li + li {
+    margin-top: 0.5em;
+  }
+
+  & li::marker {
+    color: var(--color-oro);
+  }
+
+  & a {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  & strong {
+    font-weight: 600;
+  }
+
+  & blockquote {
+    border-left: 1px solid var(--color-oro);
+    padding-left: 1.25em;
+    font-family: var(--font-editorial);
+  }
 }
 
 /* Marcador de contenido pendiente: solo existe en desarrollo (§14.4). */

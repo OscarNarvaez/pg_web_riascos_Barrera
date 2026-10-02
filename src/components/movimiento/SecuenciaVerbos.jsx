@@ -59,8 +59,11 @@ const sinSuscripcion = () => () => {};
  * @param {string} props.titulo
  * @param {{ reactivo: string, estrategico: string }[]} props.pares
  * @param {{ reactivo: string, estrategico: string }} props.encabezados Títulos de las columnas.
+ * @param {boolean} [props.tituloVisible] Muestra el título en el escenario y en la tabla
+ *   estática. En falso, la sección ya tiene su propio encabezado visible y el título queda solo
+ *   para lectores de pantalla.
  */
-export default function SecuenciaVerbos({ titulo, pares, encabezados }) {
+export default function SecuenciaVerbos({ titulo, pares, encabezados, tituloVisible = true }) {
   const contenedor = useRef(null);
   const { scrollYProgress } = useScroll({ target: contenedor, offset: ['start start', 'end end'] });
   const [actual, setActual] = useState(0);
@@ -77,37 +80,38 @@ export default function SecuenciaVerbos({ titulo, pares, encabezados }) {
 
   return (
     <div>
-      <table className="sr-only motion-reduce:not-sr-only motion-reduce:w-full motion-reduce:text-left">
-        <caption className="motion-reduce:pb-6 motion-reduce:text-left motion-reduce:font-titulo motion-reduce:text-titulo">
-          {titulo}
-        </caption>
-        <thead>
-          <tr className="motion-reduce:border-b motion-reduce:border-oro">
-            <th className="motion-reduce:py-3 motion-reduce:font-medium motion-reduce:text-verde-gris">
-              {encabezados.reactivo}
-            </th>
-            <th className="motion-reduce:py-3 motion-reduce:font-medium motion-reduce:text-verde-gris">
-              {encabezados.estrategico}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {pares.map((par) => (
-            <tr
-              key={par.reactivo}
-              className="motion-reduce:font-titulo motion-reduce:text-subtitulo"
-            >
-              <td className="motion-reduce:py-3 motion-reduce:text-verde-gris">{par.reactivo}</td>
-              <td className="motion-reduce:py-3 motion-reduce:text-verde">{par.estrategico}</td>
+      {/* Una <table> no se encoge a 1 px como un bloque: con sr-only directo desbordaba la
+          página en pantallas estrechas. El contenedor es el que se oculta. */}
+      <div className="sr-only motion-reduce:not-sr-only">
+        <table className="w-full text-left">
+          <caption className={tituloVisible ? 'pb-6 text-left font-titulo text-titulo' : 'sr-only'}>
+            {titulo}
+          </caption>
+          <thead>
+            <tr className="border-b border-oro">
+              <th className="py-3 font-medium text-verde-gris">{encabezados.reactivo}</th>
+              <th className="py-3 font-medium text-verde-gris">{encabezados.estrategico}</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {pares.map((par) => (
+              <tr key={par.reactivo} className="font-titulo text-subtitulo">
+                <td className="py-3 text-verde-gris">{par.reactivo}</td>
+                <td className="py-3 text-verde">{par.estrategico}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <div ref={contenedor} aria-hidden="true" className="relative h-[400svh] motion-reduce:hidden">
         <div className="sticky top-0 flex h-svh flex-col justify-between py-[max(6rem,12svh)]">
           <div className="flex items-baseline justify-between gap-6">
-            <p className="font-titulo text-titulo text-verde">{titulo}</p>
+            {tituloVisible ? (
+              <p className="font-titulo text-titulo text-verde">{titulo}</p>
+            ) : (
+              <span />
+            )}
             <p className="text-pequeno text-verde-gris tabular-nums">
               {actual + 1} / {total}
             </p>

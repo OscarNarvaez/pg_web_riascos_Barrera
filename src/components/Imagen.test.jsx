@@ -21,8 +21,15 @@ describe('<Imagen>', () => {
   it('sin archivo, reserva un espacio con la proporción exacta del Anexo B', () => {
     const { container } = render(<Imagen nombre="firma-portada" alt="Oficina" datos={{}} />);
     const espacio = container.querySelector('[data-imagen-pendiente="firma-portada"]');
-    expect(espacio).toHaveStyle({ aspectRatio: '21 / 9' });
+    expect(espacio.style.getPropertyValue('--proporcion')).toBe('21 / 9');
     expect(screen.getByRole('img', { name: 'Oficina' })).toBe(espacio);
+  });
+
+  it('sin archivo y con variante móvil, reserva también la proporción móvil', () => {
+    const { container } = render(<Imagen nombre="inicio-hero" alt="" datos={{}} />);
+    const espacio = container.firstChild;
+    expect(espacio.style.getPropertyValue('--proporcion')).toBe('16 / 9');
+    expect(espacio.style.getPropertyValue('--proporcion-movil')).toBe('4 / 5');
   });
 
   it('sin archivo y decorativa, se oculta a los lectores de pantalla', () => {

@@ -471,7 +471,7 @@ Antes de maquetar páginas:
 - Componente `<Imagen nombre="...">` con `srcset`, `sizes`, `width` y `height` explícitos, `loading="lazy"` fuera del primer pantallazo y prioridad alta en la imagen del hero.
 - JavaScript mínimo en el sitio público: componentes de servidor por defecto y componentes de cliente solo donde haya interacción o animación. Motion con `LazyMotion`. El panel no carga código en el sitio público.
 - Mapa de Google solo bajo demanda (fachada).
-- Presupuesto: JavaScript inicial del sitio público por debajo de unos 150 KB comprimidos.
+- ~~Presupuesto: JavaScript inicial del sitio público por debajo de unos 150 KB comprimidos.~~ **Retirado por decisión del cliente (Fase 1):** el armazón de Next.js 16 y React 19 ya supera esa cifra por sí solo. No hay presupuesto fijo de JavaScript; se usa lo que el sitio necesite. Las metas de Lighthouse de esta sección se mantienen.
 
 ---
 

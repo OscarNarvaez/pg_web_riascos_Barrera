@@ -97,7 +97,7 @@ la especificación.
 
 <!-- inicio:generado por pnpm pendientes -->
 
-### Marcadores en el código (9)
+### Marcadores en el código (11)
 
 | Falta                                      | Dónde                                               |
 | ------------------------------------------ | --------------------------------------------------- |
@@ -105,11 +105,13 @@ la especificación.
 | teléfono institucional                     | `src/config/firma.js:30`                            |
 | correo institucional                       | `src/config/firma.js:31`                            |
 | redes sociales institucionales             | `src/config/firma.js:34`                            |
-| confirmar texto de cobertura               | `src/config/firma.js:43`                            |
+| confirmar texto de cobertura               | `src/config/firma.js:46`                            |
 | fecha de vigencia                          | `src/content/legal/politica-privacidad.md:4`        |
 | texto entregado por la firma               | `src/content/legal/politica-privacidad.md:7`        |
 | fecha de vigencia                          | `src/content/legal/politica-tratamiento-datos.md:4` |
 | texto entregado por la firma               | `src/content/legal/politica-tratamiento-datos.md:7` |
+| confirmar cargo                            | `src/content/es/equipo.js:16`                       |
+| confirmar si se publica                    | `src/content/es/equipo.js:20`                       |
 
 ### Imágenes faltantes (18 de 18)
 

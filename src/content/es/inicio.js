@@ -1,7 +1,6 @@
 /**
  * Textos del Inicio (Anexo A.2). Texto literal del Anexo A: no se redacta nada nuevo (regla 1).
  * A.2.5 "Propuesta de valor" no se publica por decisión del cliente (§5.1).
- * La Fase 2 completa las secciones restantes.
  */
 export const inicio = {
   hero: {
@@ -22,6 +21,24 @@ export const inicio = {
     cierre: 'Esa diferencia lo cambia todo.',
   },
 
+  entorno: {
+    titulo: 'Toda organización toma decisiones.',
+    contraste:
+      'Algunas impulsan su crecimiento. Otras comprometen su patrimonio, su reputación y su futuro.',
+    diferencia: 'La diferencia no está en la decisión. Está en la estrategia que la respalda.',
+    introduccion:
+      'El contexto empresarial e institucional exige mucho más que conocimiento jurídico. Hoy las organizaciones enfrentan:',
+    factores: [
+      'Cambios regulatorios permanentes.',
+      'Contratación pública compleja.',
+      'Mayor supervisión de las autoridades.',
+      'Riesgos laborales y corporativos.',
+      'Impacto financiero y reputacional.',
+    ],
+    conclusion:
+      'El derecho deja de ser una función reactiva para convertirse en un elemento estratégico de gestión.',
+  },
+
   pensamosAntes: {
     titulo: 'Pensamos antes de litigar.',
     parrafos: [
@@ -35,6 +52,30 @@ export const inicio = {
       { reactivo: 'Resolver', estrategico: 'Prevenir' },
       { reactivo: 'Litigar', estrategico: 'Estrategizar' },
     ],
+  },
+
+  areas: {
+    titulo:
+      'La especialización estratégica de la firma se concentra en cuatro áreas donde genera un valor técnico real.',
+  },
+
+  perspectivas: {
+    titulo: 'No resolvemos problemas legales. Analizamos decisiones.',
+    introduccion:
+      'No analizamos solo el problema legal: examinamos cada decisión desde cuatro perspectivas.',
+    lista: [
+      { nombre: 'Jurídica', mira: 'Alcance legal y cumplimiento.' },
+      { nombre: 'Institucional', mira: 'Cómo decide el Estado.' },
+      { nombre: 'Empresarial', mira: 'Cómo opera el negocio.' },
+      { nombre: 'Estratégica', mira: 'Riesgos y oportunidades.' },
+    ],
+    comparacion: {
+      tradicional: { quien: 'Firma tradicional', que: 'Cumple la ley.' },
+      firma: {
+        quien: 'Riascos & Barrera',
+        que: 'Cumple la ley y además revela riesgos, implicaciones regulatorias y oportunidades estratégicas.',
+      },
+    },
   },
 
   metodo: {
@@ -69,6 +110,14 @@ export const inicio = {
 
   promesa: {
     titulo: 'Nunca prometemos resultados. Prometemos una forma de trabajar.',
+    compromisos: [
+      'Rigor técnico en cada concepto y actuación.',
+      'Respuesta oportuna, en menos de 24 horas.',
+      'Estrategias personalizadas para cada cliente.',
+      'Cercanía y seguimiento permanente.',
+      'Confidencialidad absoluta.',
+      'Comunicación permanente, con procesos ágiles y documentación segura en la nube.',
+    ],
   },
 
   cierre: {

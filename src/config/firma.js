@@ -59,7 +59,10 @@ export const firma = {
 
   /**
    * Página de Equipo activable (§5.4). Por defecto, activa. Por decisión del cliente arranca
-   * solo con la ficha de Marcela Riascos Eraso; los integrantes se añaden en la Fase 2.
+   * solo con la ficha de Marcela Riascos Eraso.
    */
   equipoActivo: env('NEXT_PUBLIC_EQUIPO_ACTIVO', 'true') !== 'false',
+
+  /** Integrantes que aparecen en Equipo, en orden. Sus datos están en src/content/es/equipo.js. */
+  integrantesPublicados: ['marcela-riascos-eraso'],
 };

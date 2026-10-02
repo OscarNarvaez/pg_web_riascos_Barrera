@@ -32,6 +32,42 @@ export const interfaz = {
     lecturas: 'Lecturas recomendadas',
     derechos: 'Todos los derechos reservados.',
   },
+  paginas: {
+    laFirma: 'La Firma',
+    areas: 'Áreas de Práctica',
+    equipo: 'Equipo',
+    privacidad: 'Política de privacidad',
+    tratamientoDatos: 'Política de tratamiento de datos',
+  },
+  inicio: {
+    coberturaTitulo: 'Cobertura',
+    sedePrincipal: 'Sede principal',
+    escribanos: 'Escríbanos',
+    conozcaEquipo: 'Conozca al equipo',
+    conozcaFirma: 'Conozca la firma',
+  },
+  areas: {
+    subnavegacion: 'Áreas en esta página',
+  },
+  equipo: {
+    enfoque: 'Enfoque',
+    aporta: 'Aporta',
+    leerBiografia: 'Leer la biografía',
+    cerrarBiografia: 'Cerrar la biografía',
+    biografiaDe: 'Biografía de',
+  },
+  legal: {
+    version: 'Versión',
+    vigencia: 'Vigente desde',
+  },
+  // Anexo A.8.
+  noEncontrada: {
+    titulo: 'Esta página no existe o cambió de dirección.',
+    texto: 'Vuelva al inicio, consulte nuestras publicaciones o escríbanos.',
+    inicio: 'Inicio',
+    publicaciones: 'Publicaciones',
+    contacto: 'Contacto',
+  },
   formularios: {
     obligatorio: 'obligatorio',
   },

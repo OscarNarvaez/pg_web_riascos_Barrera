@@ -35,22 +35,26 @@ export default function Imagen({
 
   const [pa, pb] = espacio.proporcion;
   const imagen = datos[nombre];
+  const espacioMovil = espaciosDeImagen[`${nombre}-movil`];
 
   if (!imagen) {
+    // Con variante móvil en el inventario, el espacio respeta también su proporción (§9.5).
+    const [ma, mb] = espacioMovil?.proporcion ?? [pa, pb];
     return (
       <div
         role={alt ? 'img' : undefined}
         aria-label={alt || undefined}
         aria-hidden={alt ? undefined : true}
         data-imagen-pendiente={nombre}
-        className={`relative overflow-hidden bg-oliva/15 ${className}`}
-        style={{ aspectRatio: `${pa} / ${pb}` }}
+        className={`relative aspect-(--proporcion-movil) overflow-hidden bg-oliva/15 md:aspect-(--proporcion) ${className}`}
+        style={{ '--proporcion': `${pa} / ${pb}`, '--proporcion-movil': `${ma} / ${mb}` }}
       >
         {ES_DESARROLLO && (
           <span className="absolute inset-0 flex flex-col items-center justify-center gap-1 p-4 text-center text-pequeno text-verde">
             <span className="font-medium text-verde">{nombre}</span>
             <span>
               {pa}:{pb} · mínimo {espacio.minimo.join(' × ')} px
+              {espacioMovil && ` · en móvil, ${nombre}-movil (${ma}:${mb})`}
             </span>
           </span>
         )}
