@@ -10,7 +10,9 @@ supabase/functions/.env
 docs/insumos/
 
 # Fuentes con licencia comercial: se descargan del repositorio privado en la compilación (9.4)
+src/fonts/breve/
 public/fonts/breve/
+src/fonts/fuentes.generated.js
 
 # Dependencias
 node_modules/
@@ -26,8 +28,10 @@ bun.lockb
 out/
 next-env.d.ts
 
-# Imágenes generadas por pnpm imagenes (los originales en imagenes/originales/ sí se versionan)
+# Generados en cada compilación por scripts/preparar.mjs
+# (los originales de imagenes/originales/ y logos/ sí se versionan)
 public/imagenes/
+public/logos/
 
 # Supabase local
 supabase/.branches/

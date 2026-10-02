@@ -1,0 +1,140 @@
+@import 'tailwindcss';
+
+/*
+ * Tokens de diseño: única fuente de colores, tipografías, espaciados, radios y curvas
+ * (especificación §3.3 y §9). Ningún componente escribe valores literales.
+ *
+ * Definitivos: colores (§9.2) y curvas y duraciones de movimiento (§9.6).
+ * Provisionales hasta aprobar el plan de diseño (§9.8): escala tipográfica, radios,
+ * contenedores y espaciado de sección.
+ */
+
+@theme {
+  /* Solo los cinco colores de la marca: se eliminan los de Tailwind. */
+  --color-*: initial;
+  --color-verde: #133b36;
+  --color-verde-gris: #61726c;
+  --color-oro: #8c8264;
+  --color-oliva: #949378;
+  --color-marfil: #f9f8f2;
+
+  /* Escala tipográfica fluida, de 320 a 1440 px de ancho (§9.4). */
+  --text-display: clamp(2.75rem, 1.821rem + 4.643vw, 6rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.025em;
+  --text-titulo: clamp(2rem, 1.429rem + 2.857vw, 4rem);
+  --text-titulo--line-height: 1.1;
+  --text-titulo--letter-spacing: -0.02em;
+  --text-subtitulo: clamp(1.375rem, 1.196rem + 0.893vw, 2rem);
+  --text-subtitulo--line-height: 1.25;
+  --text-subtitulo--letter-spacing: -0.01em;
+  --text-cuerpo: clamp(1.0625rem, 1.027rem + 0.179vw, 1.1875rem);
+  --text-cuerpo--line-height: 1.5;
+  --text-pequeno: clamp(0.8125rem, 0.795rem + 0.089vw, 0.875rem);
+  --text-pequeno--line-height: 1.45;
+
+  /* Radios por jerarquía (§9.5). */
+  --radius-contenedor: 2rem;
+  --radius-mosaico: 1.5rem;
+  --radius-control: 0.75rem;
+  --radius-pildora: 9999px;
+
+  /* Contenedores (§9.5). */
+  --container-lectura: 61.25rem;
+  --container-amplio: 82.5rem;
+
+  /* Movimiento (§9.6). */
+  --ease-salida: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-estandar: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@theme inline {
+  /* Las variables de next/font se resuelven en tiempo de ejecución: si Breve no está
+     disponible, la variable no existe y se usa el respaldo (§9.4). */
+  --font-titulo: var(--font-breve-title, var(--font-plex, system-ui, sans-serif));
+  --font-editorial: var(--font-breve-news, Georgia, 'Times New Roman', serif);
+  --font-sans: var(--font-plex, system-ui, sans-serif);
+}
+
+:root {
+  --duracion-micro: 200ms;
+  --duracion-interfaz: 400ms;
+  --duracion-revelado: 800ms;
+
+  /* Espaciado vertical de sección, de 80 px en móvil a 160 px en escritorio (§9.5). */
+  --espacio-seccion: clamp(5rem, 3.571rem + 7.143vw, 10rem);
+  /* Margen lateral mínimo, respetando las zonas seguras del dispositivo (§9.5). */
+  --margen-lateral: max(1.25rem, env(safe-area-inset-left), env(safe-area-inset-right));
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-marfil);
+    color: var(--color-verde);
+    font-family: var(--font-sans);
+    font-size: var(--text-cuerpo);
+    line-height: var(--text-cuerpo--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-oro) 30%, transparent);
+    color: var(--color-verde);
+  }
+
+  /* Foco visible en oro (§12). */
+  :focus-visible {
+    outline: 2px solid var(--color-oro);
+    outline-offset: 3px;
+    border-radius: 0.25rem;
+  }
+
+  /* Accesibilidad del movimiento (§9.6). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility contenedor-amplio {
+  width: 100%;
+  max-width: calc(var(--container-amplio) + 2 * var(--margen-lateral));
+  margin-inline: auto;
+  padding-inline: var(--margen-lateral);
+}
+
+@utility contenedor-lectura {
+  width: 100%;
+  max-width: calc(var(--container-lectura) + 2 * var(--margen-lateral));
+  margin-inline: auto;
+  padding-inline: var(--margen-lateral);
+}
+
+@utility espacio-seccion {
+  padding-block: var(--espacio-seccion);
+}
+
+/* Marcador de contenido pendiente: solo existe en desarrollo (§14.4). */
+@utility marcador-pendiente {
+  background-color: color-mix(in srgb, var(--color-oro) 18%, transparent);
+  outline: 1px dashed var(--color-oro);
+  outline-offset: 2px;
+  font-family: var(--font-sans);
+  font-size: var(--text-pequeno);
+  font-style: normal;
+  letter-spacing: 0;
+  padding-inline: 0.25em;
+}

@@ -384,7 +384,7 @@ En secciones verdes, el texto secundario es marfil con opacidad del 75 %. Sobre 
 
 **Licencias y repositorio público — obligatorio:**
 - Breve Sans Title y Breve News son **tipografías comerciales**. Su uso web requiere una licencia web vigente, que debe confirmarse (sección 20).
-- Como el repositorio es público, **los archivos de Breve no se suben al repositorio**: hacerlo los dejaría descargables para cualquiera, lo que viola las licencias habituales. Se guardan en un **repositorio privado aparte** (por ejemplo `OscarNarvaez/rb-fuentes-privadas`) y el flujo de GitHub Actions los descarga en `public/fonts/` durante la compilación con un token de solo lectura (`FONTS_REPO_TOKEN`). `public/fonts/breve/` está en `.gitignore`.
+- Como el repositorio es público, **los archivos de Breve no se suben al repositorio**: hacerlo los dejaría descargables para cualquiera, lo que viola las licencias habituales. Se guardan en un **repositorio privado aparte** (por ejemplo `OscarNarvaez/rb-fuentes-privadas`) y el flujo de GitHub Actions los descarga en `src/fonts/breve/` durante la compilación con un token de solo lectura (`FONTS_REPO_TOKEN`); `next/font/local` los publica en `_next/static/media/`. `src/fonts/breve/` está en `.gitignore` (no se usa `public/`, que los publicaría por duplicado).
 - **IBM Plex Sans** tiene licencia SIL OFL: puede ir en el repositorio.
 - **Respaldo:** si los archivos de Breve no están disponibles (por ejemplo, en local sin acceso), la compilación no falla: usa IBM Plex Sans y una serif del sistema como respaldo, y lo advierte en consola.
 - Todas las fuentes se sirven desde el propio sitio (`next/font/local`), en woff2, subconjunto latino con tildes y eñe, `font-display: swap`, precarga de la principal. Sin Google Fonts.

@@ -1,0 +1,4 @@
+# unrs-resolver (dependencia de ESLint) obtiene su binario nativo por paquetes
+# opcionales; su script de instalación no hace falta.
+allowBuilds:
+  unrs-resolver: false
