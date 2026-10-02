@@ -35,11 +35,14 @@ export const firma = {
   },
 
   /**
-   * Cobertura (Anexo A.6). Las dos versiones deben poder representarse sin tocar plantillas.
-   * `departamentos` decide qué resalta el mapa; por defecto, lo acordado el 30 de septiembre.
+   * Cobertura (Anexo A.6 y §5.7). Criterio decidido por el cliente: regional con alcance
+   * nacional. `departamentos` decide qué resalta el mapa (presencia prioritaria);
+   * `alcanceNacional` son las líneas aprobadas del material institucional que lo acompañan.
+   * Las dos versiones de A.6 siguen pudiendo representarse sin tocar plantillas.
    */
   cobertura: {
     departamentos: ['Nariño', 'Putumayo', 'Cauca'],
+    alcanceNacional: ['Atención en todo el país.', 'Gestión remota total.'],
     texto: '[PENDIENTE: confirmar texto de cobertura]',
     materialInstitucional: {
       sede: 'Pasto, Nariño',
@@ -51,9 +54,12 @@ export const firma = {
     },
   },
 
-  /** Nombre visible de la sección de casos (§5.5). */
-  nombreSeccionCasos: 'Casos',
+  /** Nombre visible de la sección de casos (§5.5). Decisión del cliente. */
+  nombreSeccionCasos: 'Casos de éxito',
 
-  /** Página de Equipo activable (§5.4). Por defecto, activa. */
+  /**
+   * Página de Equipo activable (§5.4). Por defecto, activa. Por decisión del cliente arranca
+   * solo con la ficha de Marcela Riascos Eraso; los integrantes se añaden en la Fase 2.
+   */
   equipoActivo: env('NEXT_PUBLIC_EQUIPO_ACTIVO', 'true') !== 'false',
 };

@@ -23,20 +23,18 @@
 
 ## 3. Contenido
 
-| Pendiente                                                                                      | Detalle                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Cargo de **Marcela Riascos Eraso**                                                             | El material usa "Dirección Jurídica · Socia Fundadora" y también "Directora General".                                                                                                                                                                                    |
-| Cargo de **Diego Moreno Montenegro**                                                           | "Aliado estratégico" o "Director Asociado de Litigio Administrativo".                                                                                                                                                                                                    |
-| Biografías de **José Camilo Guzmán Santos**, **Diego Moreno Montenegro** y **Diana Maldonado** | No hay texto.                                                                                                                                                                                                                                                            |
-| Correos de Marcela Riascos y Diego Moreno                                                      | Confirmar si se publican.                                                                                                                                                                                                                                                |
-| Quiénes aparecen publicados en Equipo                                                          | La sección completa está pendiente de confirmación.                                                                                                                                                                                                                      |
-| **Cobertura territorial**                                                                      | La reunión del 30 de septiembre acordó Nariño, Putumayo y Cauca, pero el texto aprobado de La Firma dice "cobertura en todo el territorio nacional" y el material institucional menciona Bogotá y Cali. Definir qué muestra el mapa y si el texto de La Firma se ajusta. |
-| Texto de cobertura para Contacto                                                               | Pendiente de redacción por la firma.                                                                                                                                                                                                                                     |
-| Nombre de la sección de casos                                                                  | "Casos" (por defecto), "Casos de éxito" o "Aprendizajes".                                                                                                                                                                                                                |
-| Teléfono institucional                                                                         | Se oculta hasta confirmarlo.                                                                                                                                                                                                                                             |
-| Número de WhatsApp institucional                                                               | El botón flotante no aparece hasta configurarlo.                                                                                                                                                                                                                         |
-| Correo institucional público                                                                   | Se oculta hasta confirmarlo.                                                                                                                                                                                                                                             |
-| Redes sociales                                                                                 | Se ocultan hasta confirmarlas.                                                                                                                                                                                                                                           |
+| Pendiente                                                                                      | Detalle                                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Cargo de **Marcela Riascos Eraso**                                                             | El material usa "Dirección Jurídica · Socia Fundadora" y también "Directora General". Su ficha es la única publicada en Equipo y sale sin cargo hasta que se confirme.                 |
+| Cargo de **Diego Moreno Montenegro**                                                           | "Aliado estratégico" o "Director Asociado de Litigio Administrativo".                                                                                                                  |
+| Biografías de **José Camilo Guzmán Santos**, **Diego Moreno Montenegro** y **Diana Maldonado** | No hay texto.                                                                                                                                                                          |
+| Correos de Marcela Riascos y Diego Moreno                                                      | Confirmar si se publican.                                                                                                                                                              |
+| Demás integrantes del Equipo                                                                   | Por decisión de la firma, Equipo arranca solo con Marcela Riascos Eraso. José Camilo Guzmán Santos, Diego Moreno Montenegro y Diana Maldonado se añaden cuando se confirmen sus datos. |
+| Texto de cobertura para Contacto                                                               | Criterio ya decidido: regional (Nariño, Putumayo y Cauca) con atención en todo el país. Falta el párrafo redactado por la firma.                                                       |
+| Teléfono institucional                                                                         | Se oculta hasta confirmarlo.                                                                                                                                                           |
+| Número de WhatsApp institucional                                                               | El botón flotante no aparece hasta configurarlo.                                                                                                                                       |
+| Correo institucional público                                                                   | Se oculta hasta confirmarlo.                                                                                                                                                           |
+| Redes sociales                                                                                 | Se ocultan hasta confirmarlas.                                                                                                                                                         |
 
 ## 4. Fotografías (Anexo B)
 
@@ -82,9 +80,17 @@ la especificación.
 - **DMARC.** El dominio no tiene registro DMARC. Cuando el sitio empiece a enviar correos, conviene
   que el administrador de Google Workspace lo configure para mejorar la entrega y evitar
   suplantaciones. No forma parte del contrato.
-- **Licencia del repositorio.** El repositorio es público y hoy está bajo Apache 2.0, que permite a
-  cualquiera reutilizar todo lo publicado, incluidos los textos institucionales y los logotipos.
-  Pendiente de decisión.
+
+## 7. Decisiones ya tomadas
+
+| Tema                          | Decisión                                                                                                                  |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Propuesta de valor (A.2.5)    | No se publica.                                                                                                            |
+| Cobertura                     | Regional con alcance nacional: el mapa resalta Nariño, Putumayo y Cauca, y se indica la atención en todo el país.         |
+| Equipo                        | Arranca solo con la ficha de Marcela Riascos Eraso.                                                                       |
+| Nombre de la sección de casos | "Casos de éxito", con el aviso de que la experiencia previa no garantiza resultados también en el encabezado del listado. |
+| Licencia del repositorio      | Todos los derechos reservados (ver `LICENSE`).                                                                            |
+| Dominio propio                | Se configura al final del proyecto; hasta entonces el sitio vive en github.io.                                            |
 
 ## Inventario generado
 

@@ -1,9 +1,7 @@
 # Plan de diseño — Riascos & Barrera
 
-> Fase 1, paso obligatorio de la especificación §9.8. Pendiente de aprobación.
-> Nada de esto se maqueta hasta que se apruebe. Los tokens ya escritos en
-> `src/app/globals.css` siguen este documento; los marcados como provisionales cambian si
-> este plan cambia.
+> Fase 1, paso obligatorio de la especificación §9.8. **Aprobado el 2 de octubre de 2026.**
+> Los tokens de `src/app/globals.css` siguen este documento.
 
 ## La idea
 
@@ -328,9 +326,8 @@ Es el objetivo comercial del sitio y §4.3 lo exige.
 - **Fuentes Breve.** Todo lo anterior está pensado para Breve Sans Title y Breve News. Con el
   respaldo (IBM Plex Sans y una serif del sistema) la composición se sostiene, pero pierde
   carácter. La guía de estilos mostrará cuál de los dos está activo.
-- **A.2.5 "Propuesta de valor"** no tiene lugar en el Inicio según §5.1 (pregunta P1 de la Fase 0,
-  aún abierta). Los wireframes no la incluyen. Si se decide integrarla, el sitio natural es entre
-  "Qué hacemos" y "El nuevo entorno".
+- **A.2.5 "Propuesta de valor"** no se publica, por decisión del cliente. Los wireframes ya no la
+  incluían.
 
 ---
 

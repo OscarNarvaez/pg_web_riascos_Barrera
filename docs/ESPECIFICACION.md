@@ -5,6 +5,7 @@
 > Desarrollador responsable: Oscar Julián Narváez. Versión 2.0 — 2 de octubre de 2026.
 > La versión 2.0 reemplaza por completo a la 1.0: cambian el hosting, la base de datos, el stack y la dirección visual.
 > **Revisión 2.0.1 (2 de octubre de 2026, cierre de la Fase 0):** gestor de paquetes pnpm; el dominio está registrado y con DNS en Squarespace, no en Namecheap; ruta de paginación de publicaciones; `PERMITIR_PENDIENTES` durante las Fases 1–6; `noindex` mientras el sitio viva en github.io.
+> **Revisión 2.0.2 (2 de octubre de 2026, Fase 1):** decisiones del cliente sobre A.2.5 (se omite), cobertura (regional con alcance nacional), Equipo (activo solo con la ficha de Marcela Riascos Eraso), nombre de la sección de casos ("Casos de éxito") y licencia del repositorio (todos los derechos reservados). El dominio propio se configura al final del proyecto.
 
 ---
 
@@ -36,7 +37,7 @@ Estas reglas prevalecen sobre cualquier otra instrucción del documento. Si algu
 8. **Datos personales del equipo.** No publiques números de teléfono personales de los abogados. El canal público es la línea institucional de la firma.
 9. **Contenido de terceros.** Las "Lecturas recomendadas" muestran únicamente título, fuente, enlace y un comentario breve escrito por la firma. Nunca se reproduce el contenido del artículo externo.
 10. **Logotipos oficiales.** Los logotipos están en la carpeta `logos/` del repositorio. Úsalos tal cual: no los redibujes, no los recolorees fuera de las variantes entregadas, no los deformes ni les añadas efectos.
-11. **El repositorio es público.** GitHub Pages en plan gratuito exige repositorio público: **todo lo que se suba al repositorio es visible para cualquiera.** Nunca subas claves secretas, el archivo `.env.local`, documentos del cliente (`docs/insumos/`) ni archivos de fuentes con licencia comercial (ver 9.4). La seguridad de los datos depende de las políticas RLS de Supabase, no de ocultar código.
+11. **El repositorio es público.** GitHub Pages en plan gratuito exige repositorio público: **todo lo que se suba al repositorio es visible para cualquiera.** Que sea visible no significa que sea reutilizable: el repositorio no tiene licencia de uso, todos los derechos están reservados (ver `LICENSE`). Nunca subas claves secretas, el archivo `.env.local`, documentos del cliente (`docs/insumos/`) ni archivos de fuentes con licencia comercial (ver 9.4). La seguridad de los datos depende de las políticas RLS de Supabase, no de ocultar código.
 12. **Secretos fuera de la conversación.** No pidas al desarrollador que pegue claves secretas en el chat. Indica en qué archivo o en qué panel de secretos deben configurarse.
 13. **No cambies el alcance en silencio.** Si algo de esta especificación es contradictorio, ambiguo o imposible con la arquitectura definida, detente, explícalo y pregunta.
 
@@ -139,7 +140,7 @@ Mientras el dominio propio no esté activo, el sitio vive en `https://oscarnarva
 Los textos están en el **Anexo A** y las imágenes en el **Anexo B**. Aquí se define estructura y comportamiento. Las animaciones se detallan en 9.6.
 
 ### 5.1 Inicio
-Cada sección transmite **una sola idea** y ocupa, en escritorio, aproximadamente una pantalla. Orden:
+Cada sección transmite **una sola idea** y ocupa, en escritorio, aproximadamente una pantalla. El texto A.2.5 ("Propuesta de valor") **no se publica**, por decisión del cliente. Orden:
 
 1. **Hero.** "Inteligencia para decidir." y "Estrategia jurídica para decisiones que importan." Acciones: "Agende su consulta" y "Conozca nuestras áreas". Imagen `inicio-hero` (escritorio) e `inicio-hero-movil` (móvil). Sin carruseles.
 2. **Qué hacemos.** "Más que asesoría jurídica, aportamos criterio para decidir." Las cuatro lógicas se iluminan una a una con el desplazamiento. Imagen `inicio-que-hacemos`.
@@ -163,13 +164,14 @@ Una sola página con **subnavegación fija** con las cuatro áreas, que resalta 
 ### 5.4 Equipo
 - Controlada por `NEXT_PUBLIC_EQUIPO_ACTIVO` (por defecto `true`). Si está en `false`, la página no se genera, desaparece del menú, de la vista previa de Inicio y del sitemap.
 - Integrantes definidos en `src/config/firma.js` (los actualiza el desarrollador en esta fase).
+- **Decisión del cliente:** la sección arranca activa **solo con la ficha de Marcela Riascos Eraso**, la única con biografía. Mientras su cargo siga pendiente, la ficha se publica sin cargo. Los demás integrantes se añaden a medida que la firma los confirme.
 - Encabezado con `equipo-grupal`. Ficha: retrato (`equipo-...`), nombre, cargo, enfoque, "Aporta criterio..." y biografía si existe; la biografía larga se despliega en un panel o modal accesible.
 - La información está **pendiente de confirmación** (A.5 y sección 20).
 
 ### 5.5 Publicaciones
 - **Listado:** artículos y casos de la firma, más recientes primero, 9 por página (paginación estática `/publicaciones/pagina/2/`), filtros por etiqueta y por tipo, lista de etiquetas.
 - **Detalle:** título, fecha, autor, minutos de lectura, portada con texto alternativo, contenido con tipografía de lectura cuidada, etiquetas enlazadas, botones de compartir (LinkedIn, WhatsApp, copiar enlace; sin scripts de terceros) y hasta 3 **publicaciones relacionadas** por etiquetas compartidas.
-- **Casos:** llevan al final, obligatoriamente: *"Cada asunto es distinto. La experiencia en casos anteriores no garantiza resultados en casos futuros."* El nombre visible de la sección ("Casos de éxito", "Casos" o "Aprendizajes") es configurable; por defecto "Casos".
+- **Casos:** llevan al final, obligatoriamente: *"Cada asunto es distinto. La experiencia en casos anteriores no garantiza resultados en casos futuros."* El nombre visible de la sección ("Casos de éxito", "Casos" o "Aprendizajes") es configurable. **Decisión del cliente: "Casos de éxito".** Como ese nombre roza la regla 3, el aviso aparece también en el encabezado del listado de casos, no solo al final de cada caso.
 - **Lecturas recomendadas:** sección aparte, no mezclada con las publicaciones propias. Cada elemento: título, fuente, fecha, comentario de la firma y enlace externo (`target="_blank" rel="noopener noreferrer nofollow"`). Comparten el sistema de etiquetas.
 - **Etiquetas:** página propia por etiqueta. Solo se generan etiquetas con al menos un contenido publicado.
 - **Sin portada:** las publicaciones sin imagen usan una portada tipográfica generada con los tokens de la marca (no una foto genérica).
@@ -185,7 +187,7 @@ Una sola página con **subnavegación fija** con las cuatro áreas, que resalta 
 - Dos formularios (sección 8): **contacto general** y **solicitud de consulta** (ancla `#consulta`).
 - **Ubicación:** Google Maps incrustado (iframe, sin API de pago) de la sede en el Edificio Hito, cargado mediante **fachada**: se muestra `contacto-edificio-hito` con el botón "Ver mapa", y solo al hacer clic se carga el iframe.
 - **Cobertura:** mapa SVG simplificado del suroccidente colombiano que resalta los departamentos configurados (por defecto, según la reunión del 30 de septiembre: **Nariño, Putumayo y Cauca**). Cartografía de dominio público o licencia libre (por ejemplo, Natural Earth); documenta la fuente en el código.
-- Texto de cobertura configurable (diferencia pendiente con el material institucional, ver A.6).
+- **Criterio de cobertura (decisión del cliente): regional con alcance nacional.** El mapa resalta Nariño, Putumayo y Cauca como presencia prioritaria, y la página indica que la firma atiende en todo el país de forma virtual. Así no contradice A.3.1 ("cobertura en todo el territorio nacional"), que se publica tal cual. El párrafo de cobertura sigue pendiente de redacción por la firma.
 
 ### 5.8 Políticas legales
 Dos páginas que renderizan archivos Markdown (`src/content/legal/politica-privacidad.md` y `src/content/legal/politica-tratamiento-datos.md`). Mientras la firma no los entregue, contienen `[PENDIENTE: texto entregado por la firma]`. Cada archivo lleva en su encabezado la versión y la fecha de vigencia; la versión se registra con cada consentimiento (8.3).
@@ -645,13 +647,12 @@ Procedimiento para crear el primer usuario administrador desde el panel de Supab
 | Logotipos en SVG (en `logos/` solo hay WebP de 580 × 221 y 322 × 393 px) | Necesario para nitidez en alta densidad, `favicon.svg` y el ícono de 512 px |
 | Variante del logotipo en marfil o monocroma | El wordmark verde es invisible sobre verde profundo (1,00:1): bloquea el pie oscuro, las secciones verdes y `social-compartir` |
 | Fotografías del Anexo B | Espacios definidos con marcador hasta recibirlas |
-| Integrantes, cargos, retratos y perfiles del equipo | Sección activable; datos del Anexo A como base |
+| Cargo y retrato de Marcela Riascos Eraso; datos de los demás integrantes | Equipo arranca solo con la ficha de Marcela (5.4); los demás se añaden al confirmarse |
 | Número de WhatsApp institucional | Botón oculto hasta configurarlo |
 | Teléfono, correo y redes institucionales | Se ocultan hasta confirmarlos |
 | Correo que recibirá los formularios | Necesario antes de producción |
 | Textos de política de privacidad y de tratamiento de datos | Bloquean la publicación definitiva |
-| Criterio definitivo de cobertura (reunión vs. material institucional) | Configurable; por defecto Nariño, Putumayo y Cauca |
-| Nombre visible de la sección de casos | Configurable; por defecto "Casos" |
+| Texto de cobertura para Contacto | Criterio ya decidido (5.7); falta la redacción de la firma |
 | Acceso al panel DNS de Squarespace | Indispensable en la Fase 7. Registros actuales ya inventariados en 16.2 |
 | Cuenta de Cloudflare para Turnstile | Necesaria para los formularios (8.5) |
 | Cuenta de Resend | Necesaria para los correos (8.5); verificación de dominio en la Fase 7 |
@@ -726,6 +727,8 @@ Por eso acompañamos a nuestros clientes desde la prevención, la estructuració
 | Litigar | Estrategizar |
 
 ### A.2.5 Propuesta de valor
+> **No se publica** (decisión del cliente, ver 5.1). Se conserva como referencia.
+
 **Convertimos conocimiento institucional y jurídico en criterio para tomar mejores decisiones.**
 - **Decisiones complejas** con seguridad, criterio y visión estratégica.
 - **Experiencia integrada:** Rama Judicial, Rama Ejecutiva, Estado y sector privado.
@@ -892,7 +895,9 @@ Esta trayectoria, construida dentro y fuera del Estado, es la que hoy aporta a R
 
 ---
 
-## A.6 Cobertura — PENDIENTE DE CRITERIO DEFINITIVO
+## A.6 Cobertura
+
+**Criterio definitivo (decisión del cliente):** regional con alcance nacional (ver 5.7). El texto de cobertura para Contacto sigue pendiente de redacción por la firma.
 
 **Acordado en la reunión del 30 de septiembre de 2026 (valor por defecto):** el mapa muestra cobertura en **Nariño, Putumayo y Cauca**.
 
