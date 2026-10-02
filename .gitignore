@@ -1,0 +1,51 @@
+# El repositorio es público: nada de esto debe subirse (ver docs/ESPECIFICACION.md, regla 11)
+
+# Variables de entorno y secretos (.env.example sí se versiona)
+.env
+.env*.local
+supabase/.env
+supabase/functions/.env
+
+# Documentos entregados por el cliente
+docs/insumos/
+
+# Fuentes con licencia comercial: se descargan del repositorio privado en la compilación (9.4)
+public/fonts/breve/
+
+# Dependencias
+node_modules/
+.pnpm-store/
+
+# Lockfiles de otros gestores (solo pnpm-lock.yaml)
+package-lock.json
+yarn.lock
+bun.lockb
+
+# Compilación de Next.js
+.next/
+out/
+next-env.d.ts
+
+# Imágenes generadas por pnpm imagenes (los originales en imagenes/originales/ sí se versionan)
+public/imagenes/
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+
+# Pruebas
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.lighthouseci/
+
+# Registros y sistema
+*.log
+npm-debug.log*
+pnpm-debug.log*
+.DS_Store
+*.swp
+.vscode/*
+!.vscode/extensions.json
+.idea/
