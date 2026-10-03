@@ -10,6 +10,11 @@ export default defineConfig([
       '@next/next/no-img-element': 'off',
     },
   },
+  {
+    // Edge Functions: se ejecutan en Deno (§3.4).
+    files: ['supabase/functions/**/*.js'],
+    languageOptions: { globals: { Deno: 'readonly' } },
+  },
   globalIgnores([
     '.next/**',
     'out/**',

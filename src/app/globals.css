@@ -176,6 +176,11 @@
     margin-top: 1.25em;
   }
 
+  /* Un título al comienzo del texto no lleva el margen que lo separa del párrafo anterior. */
+  & > :first-child {
+    margin-top: 0;
+  }
+
   & h2 {
     margin-top: 2.5em;
     font-family: var(--font-titulo);

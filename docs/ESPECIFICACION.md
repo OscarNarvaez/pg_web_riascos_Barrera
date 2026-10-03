@@ -296,6 +296,15 @@ Al seleccionar una imagen: validar tipo (JPEG, PNG, WebP) y tamaño (máx. 10 MB
 ### 7.4 Diseño del panel
 Usa los mismos tokens que el sitio, con prioridad en la claridad y la eficiencia, no en la animación. Todo en español.
 
+**Decisiones de implementación (Fase 4):**
+- **Rutas.** Con exportación estática no puede haber rutas que dependan de registros creados después de compilar: cada módulo es una ruta fija (`/panel/publicaciones/editar/`) y el registro viaja en la consulta (`?id=`). El panel tiene su propio armazón (grupo de rutas aparte): el sitio público no carga nada de su código.
+- **Inactividad.** Supabase solo limita la inactividad en planes de pago: el cierre a los 60 minutos lo aplica el panel, y la última actividad se comparte entre pestañas.
+- **Edge Functions adelantadas.** `invitar-usuario` y `reconstruir-sitio` se construyen en esta fase porque el módulo de usuarios y el botón "Actualizar el sitio ahora" dependen de ellas. El webhook de base de datos y la compilación programada siguen en la Fase 5. Mientras no exista el webhook, el panel pide la recompilación al guardar un cambio visible (`RECOMPILAR_DESDE_PANEL` en `src/config/panel.js`).
+- **Reglas en la base de datos.** Al cambiar el slug de una publicación ya visible, la base conserva el anterior (§10); un slug no puede ser el anterior de otra publicación; siempre queda al menos un administrador. El correo de los usuarios vive en Auth: lo entrega la función `usuarios_del_panel()`, solo a un administrador.
+- **Imágenes.** Las imágenes del cuerpo solo pueden venir del bucket `publicaciones`; el saneado elimina cualquier otra. Safari no codifica WebP en el navegador: en ese caso se usa un codificador WebAssembly que solo se descarga entonces.
+- **Exportación de contactos.** CSV con punto y coma y BOM UTF-8 para que Excel en español lo abra bien; las celdas que empiezan como fórmula se neutralizan.
+- **Correos de Auth.** El plan gratuito no permite cambiar las plantillas con el remitente por defecto de Supabase, que además solo entrega a las direcciones del equipo del proyecto. Las plantillas en español (`supabase/templates/`) se activan cuando Resend sea el SMTP del proyecto; mientras tanto se usan las estándar, y `/panel/restablecer/` acepta ambos tipos de enlace.
+
 ---
 
 ## 8. Formularios, captación y medición

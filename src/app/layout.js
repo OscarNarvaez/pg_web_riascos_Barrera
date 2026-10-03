@@ -1,7 +1,4 @@
 import './globals.css';
-import ProveedorMovimiento from '@/components/movimiento/ProveedorMovimiento';
-import Encabezado from '@/components/navegacion/Encabezado';
-import PiePagina from '@/components/navegacion/PiePagina';
 import { variablesDeFuentes } from '@/fonts';
 import { firma } from '@/config/firma';
 import { paleta } from '@/config/paleta';
@@ -50,13 +47,9 @@ export default function RootLayout({ children }) {
         >
           {interfaz.saltarAlContenido}
         </a>
-        <ProveedorMovimiento>
-          <Encabezado />
-          <main id="contenido" className="flex-1">
-            {children}
-          </main>
-          <PiePagina />
-        </ProveedorMovimiento>
+        {/* El armazón vive en (sitio)/layout.js y en panel/layout.js: el panel no carga el del
+            sitio público, ni el sitio el del panel (§11). Ambos tienen su <main id="contenido">. */}
+        {children}
       </body>
     </html>
   );

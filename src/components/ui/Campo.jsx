@@ -56,7 +56,7 @@ export default function Campo({
         )}
       </label>
       {ayuda && (
-        <p id={idAyuda} className="text-pequeno text-verde-gris">
+        <p id={idAyuda} className="text-pequeno [overflow-wrap:anywhere] text-verde-gris">
           {ayuda}
         </p>
       )}

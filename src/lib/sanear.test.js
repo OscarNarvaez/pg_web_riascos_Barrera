@@ -1,10 +1,16 @@
-import { describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import { sanearHtml } from './sanear';
+
+const BUCKET = 'https://proyecto.supabase.co/storage/v1/object/public/publicaciones';
+
+beforeAll(() => {
+  process.env.NEXT_PUBLIC_SUPABASE_URL = 'https://proyecto.supabase.co';
+});
 
 describe('saneado del HTML de publicaciones (§13)', () => {
   it('elimina scripts y manejadores de eventos', () => {
     const html = sanearHtml(
-      '<p onclick="x()">Hola</p><script>alert(1)</script><img src="a.webp" onerror="x()" alt="A">',
+      `<p onclick="x()">Hola</p><script>alert(1)</script><img src="${BUCKET}/2026/a-1600.webp" onerror="x()" alt="A">`,
     );
     expect(html).not.toMatch(/script|onclick|onerror/i);
     expect(html).toContain('<p>Hola</p>');
@@ -36,5 +42,14 @@ describe('saneado del HTML de publicaciones (§13)', () => {
     const html =
       '<h2>T</h2><p><strong>a</strong> <em>b</em></p><ul><li>c</li></ul><blockquote><p>d</p></blockquote>';
     expect(sanearHtml(html)).toBe(html);
+  });
+
+  it('solo admite imágenes del bucket de publicaciones', () => {
+    const propia = `<img src="${BUCKET}/2026/a-1600.webp" alt="Propia">`;
+    expect(sanearHtml(propia)).toBe(propia);
+    expect(sanearHtml('<p>a<img src="https://rastreo.invalid/p.gif" alt="x"></p>')).toBe(
+      '<p>a</p>',
+    );
+    expect(sanearHtml('<img src="data:image/png;base64,AAAA" alt="x">')).toBe('');
   });
 });

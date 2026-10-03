@@ -8,6 +8,6 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.mjs'],
-    include: ['src/**/*.test.{js,jsx}', 'scripts/**/*.test.mjs'],
+    include: ['src/**/*.test.{js,jsx}', 'scripts/**/*.test.mjs', 'supabase/functions/**/*.test.js'],
   },
 });

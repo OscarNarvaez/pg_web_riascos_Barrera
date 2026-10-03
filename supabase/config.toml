@@ -50,9 +50,9 @@ port = 54329
 # Configure one of the supported pooler modes: `transaction`, `session`.
 pool_mode = "transaction"
 # How many server connections to allow per user/database pair.
-default_pool_size = 20
+default_pool_size = 15
 # Maximum number of client connections allowed.
-max_client_conn = 100
+max_client_conn = 200
 
 # [db.vault]
 # secret_key = "env(SECRET_VALUE)"
@@ -136,8 +136,8 @@ enabled = true
 # Store analytical data in S3 for running ETL jobs over Iceberg Catalog
 # This feature is only available on the hosted platform.
 [storage.analytics]
-enabled = false
-max_namespaces = 5
+enabled = true
+max_namespaces = 10
 max_tables = 10
 max_catalogs = 2
 
@@ -157,11 +157,13 @@ max_indexes = 5
 enabled = true
 # The base URL of your website. Used as an allow-list for redirects and for constructing URLs used
 # in emails.
-site_url = "http://127.0.0.1:3000"
+# URL del sitio (§16.3). Hasta la Fase 7, la de github.io; luego, https://riascosbarrera.com.
+site_url = "https://oscarnarvaez.github.io/pg_web_riascos_Barrera"
 # The public URL that Auth serves on. Defaults to the API external URL with `/auth/v1` appended.
 # external_url = ""
 # A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
-additional_redirect_urls = ["https://127.0.0.1:3000"]
+# Redirecciones limitadas al sitio (§13): solo la página del panel que define la contraseña.
+additional_redirect_urls = ["https://oscarnarvaez.github.io/pg_web_riascos_Barrera/panel/restablecer/"]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
 # JWT issuer URL. If not set, defaults to auth.external_url.
@@ -181,10 +183,11 @@ enable_anonymous_sign_ins = false
 # Allow/disallow testing manual linking of accounts
 enable_manual_linking = false
 # Passwords shorter than this value will be rejected as weak. Minimum 6, recommended 8 or more.
-minimum_password_length = 6
+# Contraseñas robustas (§13).
+minimum_password_length = 12
 # Passwords that do not meet the following requirements will be rejected as weak. Supported values
 # are: `letters_digits`, `lower_upper_letters_digits`, `lower_upper_letters_digits_symbols`
-password_requirements = ""
+password_requirements = "lower_upper_letters_digits"
 
 # Configure passkey sign-ins.
 # [auth.passkey]
@@ -220,20 +223,24 @@ web3 = 30
 
 [auth.email]
 # Allow/disallow new user signups via email to your project.
-enable_signup = false
+# OJO: en la plataforma esta opción activa o desactiva el proveedor de correo completo, incluido
+# el ingreso con contraseña. Debe quedar en true; el registro público lo cierra
+# [auth] enable_signup = false (comprobado: /auth/v1/signup responde signup_disabled).
+enable_signup = true
 # If enabled, a user will be required to confirm any email change on both the old, and new email
 # addresses. If disabled, only the new email is required to confirm.
 double_confirm_changes = true
 # If enabled, users need to confirm their email address before signing in.
-enable_confirmations = false
+enable_confirmations = true
 # If enabled, users will need to reauthenticate or have logged in recently to change their password.
 secure_password_change = false
 # Controls the minimum amount of time that must pass before sending another signup confirmation or password reset email.
-max_frequency = "1s"
+max_frequency = "1m"
 # Number of characters used in the email OTP.
-otp_length = 6
+otp_length = 8
 # Number of seconds before the email OTP expires (defaults to 1 hour).
-otp_expiry = 3600
+# 24 horas, el máximo: una invitación de una hora caduca antes de que la persona la abra.
+otp_expiry = 86400
 
 # Use a production-ready SMTP server
 # [auth.email.smtp]
@@ -245,10 +252,19 @@ otp_expiry = 3600
 # admin_email = "admin@email.com"
 # sender_name = "Admin"
 
-# Uncomment to customize email template
+# Correos de invitación y recuperación en español (§16.3). El enlace lleva a
+# /panel/restablecer/, que verifica el token solo cuando la persona envía su nueva contraseña:
+# así los analizadores de enlaces del correo no lo consumen antes de tiempo.
+# El plan gratuito no permite cambiar las plantillas con el remitente por defecto de Supabase:
+# se activan cuando Resend sea el SMTP del proyecto (Fases 5 y 7). Mientras tanto se envían las
+# plantillas estándar, y /panel/restablecer/ acepta los dos tipos de enlace.
 # [auth.email.template.invite]
-# subject = "You have been invited"
-# content_path = "./supabase/templates/invite.html"
+# subject = "Invitación al panel de Riascos & Barrera"
+# content_path = "./supabase/templates/invitacion.html"
+#
+# [auth.email.template.recovery]
+# subject = "Restablezca su contraseña del panel de Riascos & Barrera"
+# content_path = "./supabase/templates/recuperacion.html"
 
 # Uncomment to customize notification email template
 # [auth.email.notification.password_changed]
@@ -302,8 +318,8 @@ max_enrolled_factors = 10
 
 # Control MFA via App Authenticator (TOTP)
 [auth.mfa.totp]
-enroll_enabled = false
-verify_enabled = false
+enroll_enabled = true
+verify_enabled = true
 
 # Configure MFA via Phone Messaging
 [auth.mfa.phone]
@@ -414,3 +430,16 @@ enabled = true
 # formatted with uppercase keywords, indent 2, max width 180, trailing commas,
 # and column/key alignment. Set to "null" to emit raw, unformatted SQL.
 # format_options = "{\"keywordCase\":\"upper\",\"indent\":2,\"maxWidth\":180,\"commaStyle\":\"trailing\"}"
+
+# Edge Functions (especificación §3.4). Ambas verifican la sesión por dentro con auth.getUser(),
+# que consulta a Supabase Auth: así funcionan con cualquier tipo de clave de firma. Además,
+# reconstruir-sitio recibe el webhook de la base de datos, que no envía sesión.
+[functions.invitar-usuario]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/invitar-usuario/index.js"
+
+[functions.reconstruir-sitio]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/reconstruir-sitio/index.js"

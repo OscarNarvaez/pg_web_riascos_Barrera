@@ -32,16 +32,26 @@ const ETIQUETAS = [
 ];
 const ATRIBUTOS = ['href', 'target', 'rel', 'src', 'alt', 'width', 'height', 'title'];
 
+/**
+ * Las imágenes del cuerpo solo pueden venir del bucket de publicaciones (§6.5): las sube el
+ * panel. Una imagen externa pegada desde otro documento podría ser un píxel de seguimiento.
+ */
+function esImagenPropia(src) {
+  const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  return Boolean(base) && (src ?? '').startsWith(`${base}/storage/v1/object/public/publicaciones/`);
+}
+
 let configurado = false;
 
 function configurar() {
   if (configurado) return;
   configurado = true;
-  // Todo enlace que abre otra pestaña lleva rel seguro.
   DOMPurify.addHook('afterSanitizeAttributes', (nodo) => {
+    // Todo enlace que abre otra pestaña lleva rel seguro.
     if (nodo.tagName === 'A' && nodo.getAttribute('target') === '_blank') {
       nodo.setAttribute('rel', 'noopener noreferrer');
     }
+    if (nodo.tagName === 'IMG' && !esImagenPropia(nodo.getAttribute('src'))) nodo.remove();
   });
 }
 

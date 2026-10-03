@@ -5,6 +5,8 @@ const VARIANTES = {
   principal: 'bg-verde text-marfil hover:bg-verde/90',
   // Invertida, para secciones en verde profundo.
   invertido: 'bg-marfil text-verde hover:bg-marfil/90',
+  // Acción secundaria sobre superficies claras (panel, §7.4).
+  contorno: 'border border-verde/25 text-verde hover:bg-verde/5',
 };
 
 const TAMANOS = {
@@ -34,7 +36,7 @@ export default function Boton({
   ...resto
 }) {
   const clases = [
-    'presionable inline-flex items-center justify-center rounded-pildora font-medium whitespace-nowrap',
+    'presionable inline-flex items-center justify-center rounded-pildora font-medium whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50',
     VARIANTES[variante],
     TAMANOS[tamano],
     anchoCompleto ? 'w-full' : '',

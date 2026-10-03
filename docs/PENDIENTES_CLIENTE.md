@@ -66,15 +66,18 @@ la especificación.
 
 ## 5. Accesos y cuentas
 
-| Pendiente                                               | Para qué                                         | Cuándo se necesita       |
-| ------------------------------------------------------- | ------------------------------------------------ | ------------------------ |
-| Acceso de propietario al proyecto Supabase              | Migraciones, funciones y secretos                | Fase 3                   |
-| Repositorio privado de fuentes (`rb-fuentes-privadas`)  | Descargar Breve durante la compilación           | Cuando haya licencia web |
-| Cuenta de Cloudflare (Turnstile)                        | Protección antispam de los formularios           | Fase 5                   |
-| Cuenta de Resend                                        | Correos de notificación y confirmación           | Fase 5                   |
-| Acceso al panel DNS de **Squarespace**                  | El dominio está en Squarespace, no en Namecheap  | Fase 7                   |
-| Fecha acordada para reemplazar la página "Próximamente" | El cambio de DNS la sustituye por el sitio nuevo | Fase 7                   |
-| Google Tag Manager (`NEXT_PUBLIC_GTM_ID`)               | Medición de la agencia digital                   | Fase 5                   |
+| Pendiente                                                 | Para qué                                                                                                             | Cuándo se necesita            |
+| --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| Acceso de propietario al proyecto Supabase                | Migraciones, funciones y secretos                                                                                    | Fase 3                        |
+| Repositorio privado de fuentes (`rb-fuentes-privadas`)    | Descargar Breve durante la compilación                                                                               | Cuando haya licencia web      |
+| Cuenta de Cloudflare (Turnstile)                          | Protección antispam de los formularios                                                                               | Fase 5                        |
+| Cuenta de Resend                                          | Correos de notificación y confirmación                                                                               | Fase 5                        |
+| Acceso al panel DNS de **Squarespace**                    | El dominio está en Squarespace, no en Namecheap                                                                      | Fase 7                        |
+| Fecha acordada para reemplazar la página "Próximamente"   | El cambio de DNS la sustituye por el sitio nuevo                                                                     | Fase 7                        |
+| Google Tag Manager (`NEXT_PUBLIC_GTM_ID`)                 | Medición de la agencia digital                                                                                       | Fase 5                        |
+| Confirmar el correo de la cuenta de administración        | Hoy es `@barrerariascos.com`, no `@riascosbarrera.com`: si es una errata, no le llegarán los correos de recuperación | Ya                            |
+| Token de GitHub para recompilar (`GITHUB_DISPATCH_TOKEN`) | Botón "Actualizar el sitio ahora" y recompilación al publicar (ver `docs/DESPLIEGUE.md`)                             | Ya (lo crea el desarrollador) |
+| Resend como SMTP de Supabase Auth                         | Invitaciones y recuperación de contraseña a cualquier correo, con plantillas en español                              | Fase 5                        |
 
 ## 6. Recomendaciones fuera de alcance
 

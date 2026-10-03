@@ -6,3 +6,5 @@ public/
 coverage/
 src/data/*.generated.json
 docs/ESPECIFICACION.md
+# Plantillas de correo de Supabase Auth: Prettier parte las variables {{ .X }} de Go.
+supabase/templates/
